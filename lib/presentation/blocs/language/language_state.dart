@@ -1,6 +1,5 @@
 part of 'language_bloc.dart';
 
-@immutable
 abstract class LanguageState extends Equatable {
   const LanguageState();
 

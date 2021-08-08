@@ -1,0 +1,16 @@
+{
+    "favoriteMovies": "Lieblingsfilme",
+    "language": "Sprache",
+    "feedback": "Feedback",
+    "about": "Über",
+    "popular": "Beliebt",
+    "now": "jetzt",
+    "soon": "bald",
+    "okay": "in Ordnung",
+    "retry": "Retry",
+    "somethingWentWrong": "etwas ist schief gelaufen",
+    "checkNetwork": "Bitte überprüfen Sie Ihre Netzwerkverbindung und drücken Sie die Retry-Taste oder geben Sie einen Fehler ein, indem Sie die Feedback-Taste drücken.",
+    "aboutDescription": "Dieses Produkt verwendet die TMDb-API, wird jedoch nicht von TMDb unterstützt oder zertifiziert. Diese App wurde für Bildungszwecke entwickelt.",
+    "noMovies": "Sorry, no movies under this section",
+    "cast":"cast"
+}

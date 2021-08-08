@@ -1,6 +1,5 @@
 part of 'language_bloc.dart';
 
-@immutable
 abstract class LanguageEvent extends Equatable {
   const LanguageEvent();
 
@@ -11,7 +10,7 @@ abstract class LanguageEvent extends Equatable {
 class ToggleLanguageEvent extends LanguageEvent {
   final LanguageEntity language;
 
-  ToggleLanguageEvent(this.language);
+  const ToggleLanguageEvent(this.language);
 
   @override
   List<Object> get props => [language.code];
