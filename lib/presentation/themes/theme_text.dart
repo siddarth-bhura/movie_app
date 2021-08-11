@@ -70,4 +70,10 @@ extension ThemeTextExtension on TextTheme {
         color: Colors.grey,
        
       );
+
+  
+
+  TextStyle get orangeSubtitle1 => subtitle1.copyWith(
+        color: Colors.orangeAccent,
+      );
 }
