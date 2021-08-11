@@ -34,10 +34,14 @@ dependencies:
   cached_network_image:
   wiredash:
   youtube_player_flutter:
+  hive:
+  path_provider:
   flutter_localizations:
     sdk: flutter
 
 dev_dependencies:
+  hive_generator:
+  build_runner:
   flutter_test:
     sdk: flutter
 

@@ -12,5 +12,7 @@
     "checkNetwork": "Bitte überprüfen Sie Ihre Netzwerkverbindung und drücken Sie die Retry-Taste oder geben Sie einen Fehler ein, indem Sie die Feedback-Taste drücken.",
     "aboutDescription": "Dieses Produkt verwendet die TMDb-API, wird jedoch nicht von TMDb unterstützt oder zertifiziert. Diese App wurde für Bildungszwecke entwickelt.",
     "noMovies": "Sorry, no movies under this section",
-    "cast":"cast"
+    "cast":"cast",
+    "noMoviesSearched": "No Movies found, please search with another word",
+    "noFavoriteMovie": "No Favorite Movie"
 }

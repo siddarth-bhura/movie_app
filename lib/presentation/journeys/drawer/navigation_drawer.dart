@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/common/constants/languages.dart';
+import 'package:movie_app/common/constants/route_constants.dart';
 import 'package:movie_app/common/constants/size_constants.dart';
 import 'package:movie_app/common/constants/translation_constants.dart';
 import 'package:movie_app/presentation/blocs/language/language_bloc.dart';
 import 'package:movie_app/presentation/journeys/drawer/navigation_expanded_list_item.dart';
+import 'package:movie_app/presentation/journeys/favorite/favorite_screen.dart';
 import 'package:movie_app/presentation/widgets/app_dialog.dart';
 import 'package:movie_app/presentation/widgets/logo.dart';
 import 'package:wiredash/wiredash.dart';
@@ -45,7 +47,9 @@ class NavigationDrawer extends StatelessWidget {
             ),
             NavigationListItem(
               title: TranslationConstants.favoriteMovies.t(context),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed(RouteList.favorite);  
+              },
             ),
             NavigationExpandedListItem(
               title: TranslationConstants.language.t(context),
@@ -81,7 +85,7 @@ class NavigationDrawer extends StatelessWidget {
   void _showDialog(BuildContext context) {
     showDialog(
       context: context,
-      builder:(_) => AppDialog(
+      builder: (_) => AppDialog(
         title: TranslationConstants.about,
         description: TranslationConstants.aboutDescription,
         buttonText: TranslationConstants.okay,
