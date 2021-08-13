@@ -19,7 +19,10 @@ class MovieTabbedBloc extends Bloc<MovieTabbedEvent, MovieTabbedState> {
   final GetPlayingNow getPlayingNow;
   final GetComingSoon getComingSoon;
 
-  MovieTabbedBloc({@required this.getComingSoon,@required this.getPlayingNow,@required this.getPopular})
+  MovieTabbedBloc(
+      {@required this.getComingSoon,
+      @required this.getPlayingNow,
+      @required this.getPopular})
       : super(MovieTabbedInitial());
 
   @override
@@ -27,6 +30,7 @@ class MovieTabbedBloc extends Bloc<MovieTabbedEvent, MovieTabbedState> {
     MovieTabbedEvent event,
   ) async* {
     if (event is MovieTabChangedEvent) {
+      yield MovieTabLoading(currentTabIndex: event.currentTabIndex);
       Either<AppError, List<MovieEntity>> moviesEither;
       switch (event.currentTabIndex) {
         case 0:
@@ -40,8 +44,9 @@ class MovieTabbedBloc extends Bloc<MovieTabbedEvent, MovieTabbedState> {
           break;
       }
       yield moviesEither.fold(
-          (l) => MovieTabLoadError(currentTabIndex: event.currentTabIndex,errorType: l.appErrorType),
-          (movies) {
+          (l) => MovieTabLoadError(
+              currentTabIndex: event.currentTabIndex,
+              errorType: l.appErrorType), (movies) {
         return MovieTabChanged(
             currentTabIndex: event.currentTabIndex, movies: movies);
       });

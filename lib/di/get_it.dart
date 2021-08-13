@@ -21,6 +21,7 @@ import 'package:movie_app/domain/usecases/update_language.dart';
 import 'package:movie_app/presentation/blocs/cast/cast_bloc.dart';
 import 'package:movie_app/presentation/blocs/favorite/favorite_bloc.dart';
 import 'package:movie_app/presentation/blocs/language/language_bloc.dart';
+import 'package:movie_app/presentation/blocs/loading/loading_bloc.dart';
 import 'package:movie_app/presentation/blocs/login/login_bloc.dart';
 import 'package:movie_app/presentation/blocs/movie_backdrop/movie_backdrop_bloc.dart';
 import 'package:movie_app/presentation/blocs/movie_carousel/movie_carousel_bloc.dart';
@@ -42,11 +43,10 @@ final getItInstance = GetIt.I;
 Future init() async {
   //SINGLETON INSTANCES
 
-  getItInstance.registerLazySingleton<Client>(
-      () => Client());
+  getItInstance.registerLazySingleton<Client>(() => Client());
 
-  getItInstance.registerLazySingleton<ApiClient>(
-      () => ApiClient(getItInstance()));
+  getItInstance
+      .registerLazySingleton<ApiClient>(() => ApiClient(getItInstance()));
 
   getItInstance.registerLazySingleton<MovieRemoteDataSource>(
       () => MovieRemoteDataSourceImpl(getItInstance()));
@@ -63,11 +63,11 @@ Future init() async {
   getItInstance.registerLazySingleton<AuthenticationLocalDataSource>(
       () => AuthenticationLocalDataSourceImpl());
 
-  getItInstance.registerLazySingleton<GetTrending>(
-      () => GetTrending(getItInstance()));
+  getItInstance
+      .registerLazySingleton<GetTrending>(() => GetTrending(getItInstance()));
 
-  getItInstance.registerLazySingleton<GetPopular>(
-      () => GetPopular(getItInstance()));
+  getItInstance
+      .registerLazySingleton<GetPopular>(() => GetPopular(getItInstance()));
 
   getItInstance.registerLazySingleton<GetPlayingNow>(
       () => GetPlayingNow(getItInstance()));
@@ -78,14 +78,13 @@ Future init() async {
   getItInstance.registerLazySingleton<GetMovieDetail>(
       () => GetMovieDetail(getItInstance()));
 
-  getItInstance.registerLazySingleton<GetCast>(
-      () => GetCast(getItInstance()));
+  getItInstance.registerLazySingleton<GetCast>(() => GetCast(getItInstance()));
 
-  getItInstance.registerLazySingleton<GetVideos>(
-      () => GetVideos(getItInstance()));
+  getItInstance
+      .registerLazySingleton<GetVideos>(() => GetVideos(getItInstance()));
 
-  getItInstance.registerLazySingleton<SaveMovie>(
-      () => SaveMovie(getItInstance()));
+  getItInstance
+      .registerLazySingleton<SaveMovie>(() => SaveMovie(getItInstance()));
 
   getItInstance.registerLazySingleton<GetFavoriteMovies>(
       () => GetFavoriteMovies(getItInstance()));
@@ -102,8 +101,8 @@ Future init() async {
   getItInstance.registerLazySingleton<GetPreferredLanguage>(
       () => GetPreferredLanguage(getItInstance()));
 
-  getItInstance.registerLazySingleton<SearchMovies>(
-      () => SearchMovies(getItInstance()));
+  getItInstance
+      .registerLazySingleton<SearchMovies>(() => SearchMovies(getItInstance()));
 
   getItInstance.registerLazySingleton<MovieRepository>(
       () => MovieRepositoryImpl(getItInstance(), getItInstance()));
@@ -114,14 +113,13 @@ Future init() async {
   getItInstance.registerLazySingleton<AuthenticationRepository>(
       () => AuthenticationRepositoryImpl(getItInstance(), getItInstance()));
 
-
-
   // FACTORY INSTANCES
 
   getItInstance.registerFactory(() => MovieBackdropBloc());
 
   getItInstance.registerFactory(
     () => MovieCarouselBloc(
+      loadingBloc: getItInstance(),
       getTrending: getItInstance(),
       movieBackdropBloc: getItInstance(),
     ),
@@ -137,11 +135,11 @@ Future init() async {
 
   getItInstance.registerFactory(
     () => MovieDetailBloc(
-      getMovieDetail: getItInstance(),
-      castBloc: getItInstance(),
-      videosBloc: getItInstance(),
-      favoriteBloc: getItInstance()
-    ),
+      loadingBloc: getItInstance(),
+        getMovieDetail: getItInstance(),
+        castBloc: getItInstance(),
+        videosBloc: getItInstance(),
+        favoriteBloc: getItInstance()),
   );
 
   getItInstance.registerFactory(
@@ -158,6 +156,7 @@ Future init() async {
 
   getItInstance.registerFactory(
     () => SearchMovieBloc(
+      loadingBloc: getItInstance(),
       searchMovies: getItInstance(),
     ),
   );
@@ -173,8 +172,11 @@ Future init() async {
       deleteFavoriteMovie: getItInstance(),
       checkIfFavoriteMovie: getItInstance()));
 
-      getItInstance.registerFactory(() => LoginBloc(
+  getItInstance.registerFactory(() => LoginBloc(
         loginUser: getItInstance(),
         logoutUser: getItInstance(),
+        loadingBloc: getItInstance(),
       ));
+
+  getItInstance.registerSingleton<LoadingBloc>(LoadingBloc());
 }
